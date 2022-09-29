@@ -40,7 +40,7 @@ public class LugarService {
 		Optional<LugarCategoria> lugarCategoriaOpt = categoriaService
 				.BuscarCategoriaLugarPorId(signUpLugar.getLugarCategoriaId());
 
-		if (lugarCategoriaOpt.isEmpty()) {
+		if (!lugarCategoriaOpt.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria Id não encontrada!");
 		} else {
 

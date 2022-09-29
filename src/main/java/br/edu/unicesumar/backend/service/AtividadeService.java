@@ -69,11 +69,11 @@ public class AtividadeService {
 			return atividadeRepository.save(atividade);
 		}	
 		
-		if (lugarOpt.isEmpty()) {
+		if (!lugarOpt.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lugar Id não encontrado");
         }
 		
-		if (atividadeCategoriaOpt.isEmpty()) {
+		if (!atividadeCategoriaOpt.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Atividade Categoria Id não encontrado");
         }
 		
@@ -108,7 +108,7 @@ public class AtividadeService {
 		
 		Optional<Atividade> atividadeAux = atividadeRepository.findById(signUpAtividadeDia.getAtividadeId());
 		
-		if (atividadeAux.isEmpty()) {
+		if (!atividadeAux.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Atividade Id não encontrado");
 		} else {
 			for (int i = 0; i < signUpAtividadeDia.getAtividadeHorarios().size(); i++) {

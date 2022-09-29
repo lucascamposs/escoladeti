@@ -1,0 +1,23 @@
+{"properties": [
+  {
+    "name": "escoladeti.auth.jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'escoladeti.auth.jwt.secret'"
+  },
+  {
+    "name": "escoladeti.auth.jwt.expiration-ms",
+    "type": "java.lang.Integer",
+    "description": "A description for 'escoladeti.auth.jwt.expirationMs'"
+  },
+  {
+    "name": "escoladeti.auth.admin.username",
+    "type": "java.lang.String",
+    "description": "A description for 'escoladeti.auth.admin.username'"
+  },
+
+  {
+    "name": "escoladeti.auth.admin.password",
+    "type": "java.lang.String",
+    "description": "A description for 'escoladeti.auth.admin.password'"
+  }
+]}

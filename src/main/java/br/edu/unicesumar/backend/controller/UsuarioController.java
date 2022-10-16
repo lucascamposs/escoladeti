@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,7 @@ import br.edu.unicesumar.backend.domain.Viajante;
 import br.edu.unicesumar.backend.dto.sign.UpdatePassword;
 import br.edu.unicesumar.backend.service.UsuarioService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/usuario")
 public class UsuarioController {

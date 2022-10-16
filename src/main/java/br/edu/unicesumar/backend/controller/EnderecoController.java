@@ -4,17 +4,21 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicesumar.backend.domain.Contato;
 import br.edu.unicesumar.backend.domain.Endereco;
 import br.edu.unicesumar.backend.service.EnderecoService;
 
+@CrossOrigin
 @RestController
+@RequestMapping("/api/endereco")
 public class EnderecoController {
 	@Autowired
 	private EnderecoService service;

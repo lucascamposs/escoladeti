@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import br.edu.unicesumar.backend.domain.Usuario;
 import br.edu.unicesumar.backend.dto.sign.SignUpLugar;
 import br.edu.unicesumar.backend.service.LugarService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/lugar")
 public class LugarController {

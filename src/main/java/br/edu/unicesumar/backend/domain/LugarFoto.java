@@ -28,9 +28,9 @@ public class LugarFoto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lugar_foto_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long lugarFotoId;
 
-	@NotEmpty(message = "Imagem não pode ser nulo")
+	@NotEmpty(message = "Imagem não pode ser Vazio")
+	@Column(columnDefinition="TEXT")
 	private String imagem;
 }

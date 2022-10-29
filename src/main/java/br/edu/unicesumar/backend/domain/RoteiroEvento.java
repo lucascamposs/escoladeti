@@ -1,5 +1,6 @@
 package br.edu.unicesumar.backend.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -31,7 +31,6 @@ public class RoteiroEvento {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roteiro_evento_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long roteiroEventoId;
 	
 	@NotEmpty(message = "Nome Evento não pode ser vazio")

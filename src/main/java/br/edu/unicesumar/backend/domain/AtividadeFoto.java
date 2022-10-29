@@ -24,9 +24,9 @@ public class AtividadeFoto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "atividade_foto_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long atividadeFotoId;
 
-	@NotEmpty(message = "Imagem não pode ser nulo")
+	@NotEmpty(message = "Imagem não pode ser vazio")
+	@Column(columnDefinition="TEXT")
 	private String imagem;
 }

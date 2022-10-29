@@ -6,4 +6,6 @@ import br.edu.unicesumar.backend.domain.Endereco;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
+    boolean existsById(Long id);
+
 }

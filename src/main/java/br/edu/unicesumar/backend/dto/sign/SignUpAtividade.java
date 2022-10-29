@@ -22,7 +22,6 @@ public class SignUpAtividade {
 	@NotNull(message = "Categoria ID da Atividade não pode ser nulo")
 	private Long atividadeCategoriaId;
 	
-	@NotNull(message = "Lugar ID da Atividade não pode ser nulo")
 	private Long lugarId;
 	
 	@NotNull(message = "Fotos da Atividade não pode ser nulo")

@@ -3,6 +3,7 @@ package br.edu.unicesumar.backend.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,6 @@ public class Lugar {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lugar_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long lugarId;
 	
 	@NotEmpty(message = "Nome do Lugar não pode ser vazio")
@@ -53,10 +53,9 @@ public class Lugar {
 	@NotNull(message = "Ativo não pode ser nulo")
 	private Boolean ativo;
 	
-	@NotNull(message = "Usuario que criou não pode ser nulo")
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
-	@JsonIgnore
+	@JsonProperty(access = Access.READ_ONLY)
 	private Usuario usuarioQueCriou;
 	
 	@ManyToOne
@@ -64,9 +63,20 @@ public class Lugar {
 	@NotNull(message = "Categoria de Lugar não pode ser nulo")
 	private LugarCategoria lugarCategoria;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name= "lugar_id")
 	@NotNull(message = "Fotos do Lugar não pode ser nulo")
 	@Builder.Default
 	private List<LugarFoto> lugarFotos = new ArrayList<>();
+
+	public void popularDadosTeste() {
+		this.nomeLugar = "NomeLugarTeste";
+		this.descricao = "DescriçãoTeste";
+		this.lugarIndicado = false;
+		this.coordenada = "123.123.123";
+		this.ativo = true;
+		this.usuarioQueCriou = null;
+		this.lugarCategoria = null;
+		this.lugarFotos = null;
+	}
 }

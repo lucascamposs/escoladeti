@@ -1,11 +1,12 @@
 package br.edu.unicesumar.backend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,57 +17,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicesumar.backend.domain.Contato;
-
 import br.edu.unicesumar.backend.domain.Usuario;
-import br.edu.unicesumar.backend.dto.sign.DtoContato;
-import br.edu.unicesumar.backend.repository.ContatoRepository;
+import br.edu.unicesumar.backend.dto.sign.SignUpContato;
+import br.edu.unicesumar.backend.dto.sign.UpdateContato;
 import br.edu.unicesumar.backend.service.ContatoService;
 
-
-@CrossOrigin
 @RestController
 @RequestMapping("/api/contato")
 public class ContatoController {
-	@Autowired
-	private ContatoService service;
-	@Autowired
-	private ContatoRepository repository;
-	
-	//GET
-	@GetMapping("/contato/{id}")
-	public ResponseEntity<Optional<Contato>> getContatoPorId(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(service.buscarContatoPorId(id));
-    }
-	
-	//POST
-	@PostMapping("/Adicionar_Contato/{id}")
-	public ResponseEntity<Contato> addContato(@RequestBody DtoContato contatoDTO){
-		Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return ResponseEntity.ok(service.adicionarContato(contatoDTO, userLogado));
-	}
-	
-	
-	//PUT
-	@PutMapping("/Alterar_Contato/{id}")
-	public ResponseEntity<Contato> updateContato(@PathVariable(name = "id")Long id, @RequestBody Contato contato){
-		
-		contato.setContatoId(id);
-		
-		Contato contatoAtualizado =  service.atualizarContato(contato).orElse(null);
-		if(contatoAtualizado != null) {
-			return ResponseEntity.ok(contatoAtualizado);
-		}else {
-			return ResponseEntity.notFound().build();
-		}
-		//return service.atualizarContato(contato).map(c -> ResponseEntity.ok(c)).orElseGet(ResponseEntity.notFound().build());
+    @Autowired
+    private ContatoService contatoService;
 
-		
-	}
-	//DELETE
-	@DeleteMapping("/Deletar_Contato/{id}")
-	public void deleteContato(@PathVariable(name = "id")Long id) {
-		service.deleteContatoPorId(id);
-	}
-	
+    @GetMapping("/contatos_usuario_logado")
+    public ResponseEntity<List<Contato>> getContatoPorId() {
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(contatoService.buscarContatosDoUsuarioLogado(userLogado));
+    }
+
+    @PostMapping("/AGENCIA/adicionar_contato")
+    @PreAuthorize("hasRole('COMPANY')")
+    public ResponseEntity<List<Contato>> addContato(@RequestBody SignUpContato signUpContato) {
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(contatoService.adicionarContato(signUpContato, userLogado));
+    }
+
+    @PutMapping("/alterar_contato")
+    public ResponseEntity<Optional<List<Contato>>> updateContato(@RequestBody List<UpdateContato> listUpdateContato) {
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(contatoService.updateContatos(listUpdateContato, userLogado));
+    }
+
+    @DeleteMapping("/AGENCIA/deletar_contato/{idContato}")
+    @PreAuthorize("hasRole('COMPANY')")
+    public void deleteContato(@PathVariable(name = "idContato") Long idContato) {
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        contatoService.deleteContatoPorId(idContato, userLogado);
+    }
 
 }

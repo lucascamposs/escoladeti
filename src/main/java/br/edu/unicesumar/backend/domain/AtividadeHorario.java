@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -25,28 +26,29 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "atividade_horario_dia")
 public class AtividadeHorario {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "atividade_horario_id")
-	@JsonProperty(access = Access.READ_ONLY)
+    @Column(name = "atividade_horario_id")
     private Long atividadeHorarioId;
-	
-	@NotNull(message = "Ativo não pode ser nulo")
+
+    @NotNull(message = "Ativo não pode ser nulo")
     private Boolean ativo;
-	
-	@JsonProperty(access = Access.READ_ONLY)
-	private Integer quantPessoasAtual;
-	
-	@NotNull(message = "Quantidade Pessoas Máximo não pode ser nulo")
-	private Integer quantPessoasMax;
-	
-	@NotNull(message = "Horário Início não pode ser nulo")
-	private LocalTime horario_inicio;
-	
-	@NotNull(message = "Horário Final não pode ser nulo")
-	private LocalTime horario_final;
-	
-	@NotNull(message = "Preço não pode ser nulo")
-	private Double preco;
+
+    @JsonProperty(access = Access.READ_ONLY)
+    private Integer quantPessoasAtual;
+
+    @NotNull(message = "Quantidade Pessoas Máximo não pode ser nulo")
+    private Integer quantPessoasMax;
+
+    @NotNull(message = "Horário Início não pode ser nulo")
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime horario_inicio;
+
+    @NotNull(message = "Horário Final não pode ser nulo")
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime horario_final;
+
+    @NotNull(message = "Preço não pode ser nulo")
+    private Double preco;
 }

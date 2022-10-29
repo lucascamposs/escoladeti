@@ -54,7 +54,6 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @JsonProperty(access = Access.READ_ONLY)
     private UUID usuarioId;
 
     @Builder.Default
@@ -83,6 +82,7 @@ public class Usuario implements UserDetails {
     private TipoUsuario tipoUsuario;
        
     @NotEmpty(message = "Foto do Usuário não pode ser vazio")
+    @Column(columnDefinition="TEXT")
     private String fotoUsuario;
     
     @NotNull(message = "Endereço não pode ser nulo")

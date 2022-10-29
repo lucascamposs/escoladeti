@@ -14,9 +14,9 @@ public enum Roles implements GrantedAuthority {
 //    ROLE_INTERNAL(ROLE_READ_ONLY),
 //    ROLE_TEST(ROLE_INTERNAL),
 //    ROLE_ADMIN(ROLE_READ_ONLY, ROLE_INTERNAL, ROLE_TEST);
-	
-	ROLE_USER,
-    ROLE_COMPANY(ROLE_USER),
+
+    ROLE_USER,
+    ROLE_COMPANY,
     ROLE_ADMIN(ROLE_USER, ROLE_COMPANY);
 
     private Roles(Roles... roles) {

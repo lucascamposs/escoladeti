@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
@@ -32,18 +32,17 @@ public class Contato {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "contato_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long contatoId;
 	
 	@Enumerated(EnumType.STRING)
     private TipoContato tipoContato;
 	
-	@NotNull(message = "Numero não pode ser nulo")
-	private Long numero;
+	@NotEmpty(message = "Numero não pode ser vazio")
+	private String numero;
 	
-	public void popularDadosTeste() {
-		this.tipoContato = tipoContato.CELULAR;
-		this.numero = 1234567890L;
+	public void popularDadosAdmin() {
+		this.tipoContato = TipoContato.CELULAR;
+		this.numero = "44912345678";
 	}
 	
 }

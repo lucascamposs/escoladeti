@@ -26,37 +26,36 @@ public class Endereco {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "endereco_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long enderecoId;
 	
-	@NotNull
-	private Long cep;
+	@NotEmpty(message = "CEP não pode ser vazio")
+	private String cep;
 	
-	@NotEmpty
+	@NotEmpty(message = "Estado não pode ser vazio")
 	private String estado;
 	
-	@NotEmpty
+	@NotEmpty(message = "Cidade não pode ser vazio")
 	private String cidade;
 	
-	@NotEmpty
+	@NotEmpty(message = "Bairro não pode ser vazio")
 	private String bairro;
 	
-	@NotEmpty
+	@NotEmpty(message = "Logradouro não pode ser vazio")
 	private String logradouro;
 	
-	@NotEmpty
-	private String numero; //Numero pode ter letras "Casa 36A"
+	@NotEmpty(message = "Numero não pode ser vazio")
+	private String numero;
 	
 	private String complemento;
 	
-	public void popularDadosTeste() {
-		this.cep = 87013230L;
+	public void popularDadosAdmin() {
+		this.cep = "87000123";
 		this.estado = "PR";
 		this.cidade = "Maringá";
 		this.bairro = "Zona 1";
-		this.logradouro = "Av xv de Novembro";
-		this.numero = "1046";
-		this.complemento = "Apto 123";
+		this.logradouro = "Av Brasil";
+		this.numero = "123";
+		this.complemento = "Complemento 123";
 	}
 	
 	

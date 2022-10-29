@@ -25,7 +25,6 @@ public class LugarCategoria {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lugar_categoria_id")
-	@JsonProperty(access = Access.READ_ONLY)
     private Long lugarCategoriaId;
 	
 	@NotEmpty(message = "Nome Categoria não pode ser vazio")

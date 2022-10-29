@@ -9,24 +9,24 @@ import org.springframework.stereotype.Service;
 
 import br.edu.unicesumar.backend.domain.AtividadeCategoria;
 import br.edu.unicesumar.backend.domain.LugarCategoria;
-import br.edu.unicesumar.backend.dto.sign.DtoAtividadeCategoria;
-import br.edu.unicesumar.backend.dto.sign.DtoLugarCategoria;
 import br.edu.unicesumar.backend.repository.AtividadeCategoriaRepository;
 import br.edu.unicesumar.backend.repository.LugarCategoriaRepository;
 
 @Service
 public class CategoriaService {
+    
 	@Autowired
 	private LugarCategoriaRepository lugarCategoriaRepository;
+	
 	@Autowired
 	private AtividadeCategoriaRepository atividadeCategoriaRepository;
-	
-	
+		
 	// LUGAR BUSCAR
 	public Page<LugarCategoria> BuscarTodosCategoriaLugar(Pageable pageable){
 		return lugarCategoriaRepository.findAll(pageable);
 	}
 	
+	//Necessário?
 	public Optional<LugarCategoria> BuscarCategoriaLugarPorId(Long id) {
 		return lugarCategoriaRepository.findById(id);
 	}
@@ -36,6 +36,8 @@ public class CategoriaService {
 	public Page<AtividadeCategoria> BuscarTodasAtividadeCategoria(Pageable pageable){
 		return atividadeCategoriaRepository.findAll(pageable);
 	}
+
+	//Necessário?
 	public Optional<AtividadeCategoria> BuscarCategoriaAtividadePorId(Long id){
 		return atividadeCategoriaRepository.findById(id);
 	}
@@ -43,19 +45,12 @@ public class CategoriaService {
 	
 	
 	//REGISTRO DE CATEGORIAS
-	public AtividadeCategoria SalvarCategoriaAtividade(DtoAtividadeCategoria atividadeCategoriaDTO) {
-		AtividadeCategoria atividadeCategoriaDomain = new AtividadeCategoria();
-		atividadeCategoriaDomain.setNome_categoria(atividadeCategoriaDTO.getNome_categoria());
-		atividadeCategoriaDomain.setIcone_categoria(atividadeCategoriaDTO.getIcone_categoria());
-		return atividadeCategoriaRepository.save(atividadeCategoriaDomain);
+	public AtividadeCategoria SalvarCategoriaAtividade(AtividadeCategoria atividadeCategoria) {
+		return atividadeCategoriaRepository.save(atividadeCategoria);
 	}
 	
-	
-	public LugarCategoria RegistarCategoriaLugar (DtoLugarCategoria lugarCategoriaDTO) {
-		LugarCategoria lugarCategoriaDomain = new LugarCategoria();
-		lugarCategoriaDomain.setNome_categoria(lugarCategoriaDTO.getNome_categoria());
-		lugarCategoriaDomain.setIcone_categoria(lugarCategoriaDTO.getIcone_categoria());
-		return lugarCategoriaRepository.save(lugarCategoriaDomain);
+	public LugarCategoria RegistarCategoriaLugar (LugarCategoria lugarCategoria) {
+		return lugarCategoriaRepository.save(lugarCategoria);
 	}
 	
 

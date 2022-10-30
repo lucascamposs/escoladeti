@@ -169,6 +169,7 @@ public class AtividadeService {
 
         existAtividade(atividadeDoBanco);
         verificaSeAgenciaDonaDaAtividade(usuario, atividadeDoBanco);
+        // Verificarr se Atividade Dia já existe pela data
 
         List<AtividadeHorario> atividadeHorariosAux = new ArrayList<>();
 

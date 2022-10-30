@@ -18,7 +18,6 @@ import br.edu.unicesumar.backend.dto.sign.SignUpRoteiro;
 import br.edu.unicesumar.backend.dto.sign.UpdateRoteiro;
 import br.edu.unicesumar.backend.repository.AtividadeRepository;
 import br.edu.unicesumar.backend.repository.LugarRepository;
-import br.edu.unicesumar.backend.repository.RoteiroEventoRepository;
 import br.edu.unicesumar.backend.repository.RoteiroRepository;
 
 @Service
@@ -26,9 +25,6 @@ public class RoteiroService {
 
     @Autowired
     private RoteiroRepository roteiroRepository;
-
-    @Autowired
-    private RoteiroEventoRepository roteiroEventoRepository;
 
     @Autowired
     private LugarRepository lugarRepository;

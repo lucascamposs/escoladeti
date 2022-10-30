@@ -34,9 +34,7 @@ import br.edu.unicesumar.backend.dto.sign.UpdateAgencia;
 import br.edu.unicesumar.backend.dto.sign.UpdateFotoUsuario;
 import br.edu.unicesumar.backend.dto.sign.UpdatePassword;
 import br.edu.unicesumar.backend.dto.sign.UpdateViajante;
-import br.edu.unicesumar.backend.repository.AgenciaRepository;
 import br.edu.unicesumar.backend.repository.UsuarioRepository;
-import br.edu.unicesumar.backend.repository.ViajanteRepository;
 
 @Service
 public class UsuarioService implements UserDetailsService {
@@ -50,18 +48,9 @@ public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private JwtTool jwtTokenTool;
-//---------------------------------------------------------------------------------
-// REPOSITORYS
+
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private AgenciaRepository agenciaRepository;
-
-    @Autowired
-    private ViajanteRepository viajanteRepository;
-
-    // ---------------------------------------------------------------------------------
 
     @Value("${escoladeti.auth.admin.username}")
     private String adminUsername;

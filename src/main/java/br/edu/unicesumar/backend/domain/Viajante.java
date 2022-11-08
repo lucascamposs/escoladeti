@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,6 +58,7 @@ public class Viajante {
     private Character sexo;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "viajante_roteiros", joinColumns = {
             @JoinColumn(name = "viajante_id")
     }, inverseJoinColumns = {
@@ -65,11 +67,21 @@ public class Viajante {
     private List<Roteiro> viajanteRoteiros = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "viajante_atividade_horarios", joinColumns = {
             @JoinColumn(name = "viajante_id")
     }, inverseJoinColumns = {
             @JoinColumn(name = "atividade_horario_id")
     })
     private List<AtividadeHorario> viajanteAtividadeHorarios = new ArrayList<>();
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "viajante_lugares", joinColumns = {
+            @JoinColumn(name = "viajante_id")
+    }, inverseJoinColumns = {
+            @JoinColumn(name = "lugar_id")
+    })
+    private List<Lugar> lugaresIndicados = new ArrayList<>();
 
 }

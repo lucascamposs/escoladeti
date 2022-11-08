@@ -57,6 +57,12 @@ public class Roteiro {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFinal;
 
+    @NotEmpty(message = "Local de Saída não pode ser vazio")
+    private String localDeSaida;
+
+    @NotEmpty(message = "Local de Chegada não pode ser vazio")
+    private String localDeChegada;
+
     @NotNull(message = "Preço não pode ser nulo")
     private Double preco;
 

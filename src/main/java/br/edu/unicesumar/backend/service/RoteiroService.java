@@ -90,6 +90,8 @@ public class RoteiroService {
                 .quantidadePessoasAtual(0)
                 .dataInicio(signUpRoteiro.getDataInicio())
                 .dataFinal(signUpRoteiro.getDataFinal())
+                .localDeSaida(signUpRoteiro.getLocalDeSaida())
+                .localDeChegada(signUpRoteiro.getLocalDeChegada())
                 .preco(signUpRoteiro.getPreco())
                 .quantidadePessoasMax(signUpRoteiro.getQuantidadePessoasMax())
                 .agencia(userLogado.getAgencia())
@@ -112,6 +114,8 @@ public class RoteiroService {
         roteiroDoBanco.get().setAtivo(updateRoteiro.getAtivo());
         roteiroDoBanco.get().setDataInicio(updateRoteiro.getDataInicio());
         roteiroDoBanco.get().setDataFinal(updateRoteiro.getDataFinal());
+        roteiroDoBanco.get().setLocalDeSaida(updateRoteiro.getLocalDeSaida());
+        roteiroDoBanco.get().setLocalDeChegada(updateRoteiro.getLocalDeChegada());
         roteiroDoBanco.get().setPreco(updateRoteiro.getPreco());
         roteiroDoBanco.get().setQuantidadePessoasMax(updateRoteiro.getQuantidadePessoasMax());
 

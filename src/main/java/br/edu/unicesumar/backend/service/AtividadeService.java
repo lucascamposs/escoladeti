@@ -169,7 +169,9 @@ public class AtividadeService {
 
         existAtividade(atividadeDoBanco);
         verificaSeAgenciaDonaDaAtividade(usuario, atividadeDoBanco);
-        // Verificarr se Atividade Dia já existe pela data
+        if (atividadeDiaRepository.diaDisponivelCadastradoByAgenciaId(usuario.getAgencia().getAgenciaId(), signUpAtividadeDia.getDiaDisponivel())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe uma atividade cadastrada nesse dia!");
+        }
 
         List<AtividadeHorario> atividadeHorariosAux = new ArrayList<>();
 

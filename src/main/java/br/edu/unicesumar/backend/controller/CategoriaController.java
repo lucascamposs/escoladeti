@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.unicesumar.backend.domain.Atividade;
 import br.edu.unicesumar.backend.domain.AtividadeCategoria;
 import br.edu.unicesumar.backend.domain.LugarCategoria;
 import br.edu.unicesumar.backend.service.CategoriaService;

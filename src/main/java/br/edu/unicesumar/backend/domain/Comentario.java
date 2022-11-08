@@ -57,15 +57,15 @@ public class Comentario {
     @JsonProperty(access = Access.READ_ONLY)
     private Viajante viajante;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "lugar_id")
     private Lugar lugar;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "atividade_id")
     private Atividade atividade;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "roteiro_id")
     private Roteiro roteiro;
 }

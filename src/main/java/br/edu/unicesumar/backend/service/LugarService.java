@@ -46,12 +46,14 @@ public class LugarService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria Id não encontrada!");
         }
 
+
         Lugar lugar = Lugar.builder()
                 .lugarIndicado(true)
                 .nomeLugar(signUpLugar.getNomeLugar())
                 .descricao(signUpLugar.getDescricao())
                 .coordenada(signUpLugar.getCoordenada())
                 .ativo(true)
+                .indicacoes(0L)
                 .usuarioQueCriou(usuario)
                 .lugarCategoria(lugarCategoriaAux.get())
                 .lugarFotos(signUpLugar.getLugarFotos()).build();
@@ -104,6 +106,8 @@ public class LugarService {
             lugarRepository.deleteById(id);
         }
     }
+
+    
 
     private void verificaSeAgenciaDonaDoLugar(Usuario usuario, Optional<Lugar> lugarDoBanco) {
         if (usuario.getAgencia().getAgenciaId() != lugarDoBanco.get().getUsuarioQueCriou().getAgencia()

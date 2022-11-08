@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -52,6 +51,10 @@ public class Lugar {
 	
 	@NotNull(message = "Ativo não pode ser nulo")
 	private Boolean ativo;
+
+	@JsonProperty(access = Access.READ_ONLY)
+    @NotNull(message = "Indicações não pode ser nulo")
+	private Long indicacoes;
 	
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")

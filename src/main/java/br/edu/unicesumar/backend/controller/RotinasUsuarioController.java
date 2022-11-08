@@ -10,15 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.unicesumar.backend.domain.Usuario;
 import br.edu.unicesumar.backend.dto.sign.EntrarSairAtividadeHorario;
 import br.edu.unicesumar.backend.dto.sign.EntrarSairRoteiro;
+import br.edu.unicesumar.backend.dto.sign.IndicarDesindicarLugar;
 import br.edu.unicesumar.backend.service.RotinasUsuarioService;
-import br.edu.unicesumar.backend.service.UsuarioService;
 
 @RestController
 @RequestMapping("/api/rotinas_usuario")
 public class RotinasUsuarioController {
-
-    @Autowired
-    private UsuarioService usuarioService;
 
     @Autowired
     private RotinasUsuarioService rotinasUsuarioService;
@@ -60,6 +57,26 @@ public class RotinasUsuarioController {
         Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         rotinasUsuarioService.sairDeAtividadeHorario(entrarSairAtividadeHorario, userLogado);
+
+    }
+
+    @PostMapping("/VIAJANTE/indicar_lugar")
+    @PreAuthorize("hasRole('USER')")
+    public void indicarLugar(IndicarDesindicarLugar indicarDesindicarLugar) {
+
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        rotinasUsuarioService.indicarLugar(indicarDesindicarLugar, userLogado);
+
+    }
+
+    @PostMapping("/VIAJANTE/desindicar_lugar")
+    @PreAuthorize("hasRole('USER')")
+    public void desindicarLugar(IndicarDesindicarLugar indicarDesindicarLugar) {
+
+        Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        rotinasUsuarioService.desindicarLugar(indicarDesindicarLugar, userLogado);
 
     }
 

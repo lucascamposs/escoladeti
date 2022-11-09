@@ -80,10 +80,7 @@ public class UsuarioService implements UserDetailsService {
     public Usuario signUpViajante(SignUpViajante signUp) {
 
         if (usuarioRepository.existsByUsername(signUp.getUsername())) {
-            //throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!");
-            throw new HttpStatusCodeException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!") { 
-                
-            };
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!");
         }
 
         if (usuarioRepository.existsByEmail(signUp.getEmail())) {

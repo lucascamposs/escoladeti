@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.edu.unicesumar.backend.config.auth.Roles;
@@ -79,7 +80,10 @@ public class UsuarioService implements UserDetailsService {
     public Usuario signUpViajante(SignUpViajante signUp) {
 
         if (usuarioRepository.existsByUsername(signUp.getUsername())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!");
+            //throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!");
+            throw new HttpStatusCodeException(HttpStatus.BAD_REQUEST, "Username já está sendo usado!") { 
+                
+            };
         }
 
         if (usuarioRepository.existsByEmail(signUp.getEmail())) {

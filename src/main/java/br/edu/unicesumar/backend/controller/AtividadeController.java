@@ -29,19 +29,19 @@ public class AtividadeController {
     @Autowired
     private AtividadeService atividadeService;
 
-    @GetMapping("/atividades_por_categoria/{id}")
-    public ResponseEntity<List<Atividade>> getAtividadesPorCategoria(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(atividadeService.getAtividadesPorCategoria(id));
+    @GetMapping("/atividades_por_categoria/{categoriaId}")
+    public ResponseEntity<List<Atividade>> getAtividadesPorCategoria(@PathVariable(name = "categoriaId") Long categoriaId) {
+        return ResponseEntity.ok(atividadeService.getAtividadesPorCategoria(categoriaId));
     }
 
-    @GetMapping("/atividades_agencia/{id}")
-    public ResponseEntity<List<Atividade>> getCompanyAtividades(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(atividadeService.getCompanyAtividades(id));
+    @GetMapping("/atividades_agencia/{agenciaId}")
+    public ResponseEntity<List<Atividade>> getCompanyAtividades(@PathVariable(name = "agenciaId") Long agenciaId) {
+        return ResponseEntity.ok(atividadeService.getCompanyAtividades(agenciaId));
     }
 
-    @GetMapping("/atividade_especifica/{id}")
-    public ResponseEntity<Atividade> getAtividadePorId(@PathVariable(name = "id") Long id) {
-        Optional<Atividade> atividadeOptional = atividadeService.getAtividadeById(id);
+    @GetMapping("/atividade_especifica/{atividadeId}")
+    public ResponseEntity<Atividade> getAtividadePorId(@PathVariable(name = "atividadeId") Long atividadeId) {
+        Optional<Atividade> atividadeOptional = atividadeService.getAtividadeById(atividadeId);
         if (atividadeOptional.isPresent()) {
             return ResponseEntity.ok(atividadeOptional.get());
         } else {
@@ -73,9 +73,9 @@ public class AtividadeController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deletar_atividade/{id}")
+    @DeleteMapping("/ADMIN/deletar_atividade/{atividadeId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteAtividade(@PathVariable(name = "id") Long id) {
-        atividadeService.deleteAtividadeById(id);
+    public void deleteAtividade(@PathVariable(name = "atividadeId") Long atividadeId) {
+        atividadeService.deleteAtividadeById(atividadeId);
     }
 }

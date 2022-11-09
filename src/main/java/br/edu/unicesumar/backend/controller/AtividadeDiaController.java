@@ -30,8 +30,8 @@ public class AtividadeDiaController {
 
     @GetMapping("/atividades_dia_por_atividade/{atividadeId}")
     public ResponseEntity<List<AtividadeDia>> getAtividadesDiaPorAtividadeId(
-            @PathVariable(name = "atividadeId") Long id) {
-        return ResponseEntity.ok(atividadeService.getAtividadeDiasByAtividadeId(id));
+            @PathVariable(name = "atividadeId") Long atividadeId) {
+        return ResponseEntity.ok(atividadeService.getAtividadeDiasByAtividadeId(atividadeId));
     }
 
     @PostMapping("/AGENCIA/adicionar_atividade_dia")
@@ -59,10 +59,10 @@ public class AtividadeDiaController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deletar_atividade_dia/{id}")
+    @DeleteMapping("/ADMIN/deletar_atividade_dia/{atividadeDiaId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteAtividade(@PathVariable(name = "id") Long id) {
-        atividadeService.deleteAtividadeDiaById(id);
+    public void deleteAtividade(@PathVariable(name = "atividadeDiaId") Long atividadeDiaId) {
+        atividadeService.deleteAtividadeDiaById(atividadeDiaId);
     }
 
 }

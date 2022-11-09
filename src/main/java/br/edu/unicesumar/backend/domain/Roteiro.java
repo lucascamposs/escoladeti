@@ -2,6 +2,7 @@ package br.edu.unicesumar.backend.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -90,4 +91,7 @@ public class Roteiro {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "roteiro_id")
     private List<RoteiroEvento> eventosRoteiro = new ArrayList<>();
+
+    @OneToMany(mappedBy = "roteiro", orphanRemoval = true)
+    private Collection<Comentario> comentariosRoteiro;
 }

@@ -38,19 +38,19 @@ public class RoteiroController {
         return ResponseEntity.ok(roteiroService.addRoteiro(signUpRoteiro, userLogado));
     }
 
-    @GetMapping("/roteiros_por_agencia/{id}")
-    public ResponseEntity<List<Roteiro>> getRoteirosPorAgencia(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(roteiroService.getRoteirosByAgenciaId(id));
+    @GetMapping("/roteiros_por_agencia/{agenciaId}")
+    public ResponseEntity<List<Roteiro>> getRoteirosPorAgencia(@PathVariable(name = "agenciaId") Long agenciaId) {
+        return ResponseEntity.ok(roteiroService.getRoteirosByAgenciaId(agenciaId));
     }
 
-    @GetMapping("/roteiros_por_lugar/{id}")
-    public ResponseEntity<List<Roteiro>> getRoteirosPorLugar(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(roteiroService.getRoteirosByLugarId(id));
+    @GetMapping("/roteiros_por_lugar/{lugarId}")
+    public ResponseEntity<List<Roteiro>> getRoteirosPorLugar(@PathVariable(name = "lugarId") Long lugarId) {
+        return ResponseEntity.ok(roteiroService.getRoteirosByLugarId(lugarId));
     }
 
-    @GetMapping("/roteiro_especifico/{id}")
-    public ResponseEntity<Roteiro> getRoteiroPorId(@PathVariable(name = "id") Long id) {
-        Optional<Roteiro> roteiroOptional = roteiroService.getRoteiroById(id);
+    @GetMapping("/roteiro_especifico/{roteiroId}")
+    public ResponseEntity<Roteiro> getRoteiroPorId(@PathVariable(name = "roteiroId") Long roteiroId) {
+        Optional<Roteiro> roteiroOptional = roteiroService.getRoteiroById(roteiroId);
         if (roteiroOptional.isPresent()) {
             return ResponseEntity.ok(roteiroOptional.get());
         } else {
@@ -73,10 +73,10 @@ public class RoteiroController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deletar_roteiro/{id}")
+    @DeleteMapping("/ADMIN/deletar_roteiro/{roteiroId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteRoteiro(@PathVariable(name = "id") Long id) {
-        roteiroService.deleteRoteiroById(id);
+    public void deleteRoteiro(@PathVariable(name = "roteiroId") Long roteiroId) {
+        roteiroService.deleteRoteiroById(roteiroId);
     }
 
 }

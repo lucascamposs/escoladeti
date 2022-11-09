@@ -47,11 +47,11 @@ public class ContatoController {
         return ResponseEntity.ok(contatoService.updateContatos(listUpdateContato, userLogado));
     }
 
-    @DeleteMapping("/AGENCIA/deletar_contato/{idContato}")
+    @DeleteMapping("/AGENCIA/deletar_contato/{contatoId}")
     @PreAuthorize("hasRole('COMPANY')")
-    public void deleteContato(@PathVariable(name = "idContato") Long idContato) {
+    public void deleteContato(@PathVariable(name = "contatoId") Long contatoId) {
         Usuario userLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        contatoService.deleteContatoPorId(idContato, userLogado);
+        contatoService.deleteContatoPorId(contatoId, userLogado);
     }
 
 }

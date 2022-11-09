@@ -54,8 +54,6 @@ public class ContatoService {
         }
 
         usuarioRepository.save(usuarioDoBanco.get());
-        // contatoRepository.deleteById(idContato);
-
     }
 
     @SuppressWarnings("null")

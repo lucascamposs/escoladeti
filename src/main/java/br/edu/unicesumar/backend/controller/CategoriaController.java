@@ -1,10 +1,10 @@
 package br.edu.unicesumar.backend.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,26 +24,26 @@ public class CategoriaController {
 	
 
 	@GetMapping("/categorias_de_lugar")
-	public ResponseEntity<Page<LugarCategoria>> BuscarTodosLugarCategoriaPaginado(Pageable pageable){
-		return ResponseEntity.ok(categoriaService.BuscarTodosCategoriaLugar(pageable));
+	public ResponseEntity<List<LugarCategoria>> BuscarTodosLugarCategoriaPaginado(){
+		return ResponseEntity.ok(categoriaService.buscarTodosCategoriaLugar());
 	}
 	
 	@GetMapping("/categorias_de_atividade")
-	public ResponseEntity<Page<AtividadeCategoria>> BuscarTodosAtividadeCategoriaPaginado(Pageable pageable){
-		return ResponseEntity.ok(categoriaService.BuscarTodasAtividadeCategoria(pageable));
+	public ResponseEntity<List<AtividadeCategoria>> BuscarTodosAtividadeCategoriaPaginado(){
+		return ResponseEntity.ok(categoriaService.buscarTodasAtividadeCategoria());
 	}
 	
 	
-	@PostMapping("/adicionar_categoria_atividade")
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/ADMIN/adicionar_categoria_atividade")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<AtividadeCategoria> SalvarNovaAtividadeCategoria(@RequestBody AtividadeCategoria atividadeCategoria){
-		return ResponseEntity.ok(categoriaService.SalvarCategoriaAtividade(atividadeCategoria));
+		return ResponseEntity.ok(categoriaService.salvarCategoriaAtividade(atividadeCategoria));
 	}
 	
-	@PostMapping("/adicionar_categoria_lugar")
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/ADMIN/adicionar_categoria_lugar")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<LugarCategoria> SalvarNovoLugarCategoria( @RequestBody LugarCategoria lugarCategoria){
-		return ResponseEntity.ok(categoriaService.RegistarCategoriaLugar(lugarCategoria));
+		return ResponseEntity.ok(categoriaService.salvarCategoriaLugar(lugarCategoria));
 	}
 	
 

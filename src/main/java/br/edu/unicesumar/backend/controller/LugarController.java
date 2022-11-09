@@ -29,19 +29,19 @@ public class LugarController {
     @Autowired
     private LugarService lugarService;
 
-    @GetMapping("/lugares_oficiais_por_categoria/{id}")
-    public ResponseEntity<List<Lugar>> getLugaresOficiaisPorCategoria(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(lugarService.getLugaresOficiaisPorCategoria(id));
+    @GetMapping("/lugares_oficiais_por_categoria/{categoriaId}")
+    public ResponseEntity<List<Lugar>> getLugaresOficiaisPorCategoria(@PathVariable(name = "categoriaId") Long categoriaId) {
+        return ResponseEntity.ok(lugarService.getLugaresOficiaisPorCategoria(categoriaId));
     }
 
-    @GetMapping("/lugares_indicados_por_categoria/{id}")
-    public ResponseEntity<List<Lugar>> getLugaresIndicadosPorCategoria(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(lugarService.getLugaresIndicadosPorCategoria(id));
+    @GetMapping("/lugares_indicados_por_categoria/{categoriaId}")
+    public ResponseEntity<List<Lugar>> getLugaresIndicadosPorCategoria(@PathVariable(name = "categoriaId") Long categoriaId) {
+        return ResponseEntity.ok(lugarService.getLugaresIndicadosPorCategoria(categoriaId));
     }
 
-    @GetMapping("/lugar_especifico/{id}")
-    public ResponseEntity<Lugar> getLugarPorId(@PathVariable(name = "id") Long id) {
-        Optional<Lugar> lugarOptional = lugarService.getLugarPorId(id);
+    @GetMapping("/lugar_especifico/{lugarId}")
+    public ResponseEntity<Lugar> getLugarPorId(@PathVariable(name = "lugarId") Long lugarId) {
+        Optional<Lugar> lugarOptional = lugarService.getLugarPorId(lugarId);
         if (lugarOptional.isPresent()) {
             return ResponseEntity.ok(lugarOptional.get());
         } else {
@@ -69,10 +69,10 @@ public class LugarController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deletar_lugar/{id}")
+    @DeleteMapping("/ADMIN/deletar_lugar/{lugarId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteLugar(@PathVariable(name = "id") Long id) {
-        lugarService.deleteLugarById(id);
+    public void deleteLugar(@PathVariable(name = "lugarId") Long lugarId) {
+        lugarService.deleteLugarById(lugarId);
     }
 
 }

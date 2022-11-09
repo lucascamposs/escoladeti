@@ -230,7 +230,7 @@ public class AtividadeService {
 
             for (int i = 0; i < updateAtividadeDia.getAtividadeHorarios().size(); i++) {
 
-                AtividadeHorario atividadeHorarioAux = null;
+                AtividadeHorario atividadeHorarioAux = new AtividadeHorario();
 
                 atividadeHorarioAux.setAtividadeHorarioId(
                         updateAtividadeDia.getAtividadeHorarios().get(i).getAtividadeHorarioId());

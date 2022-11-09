@@ -154,12 +154,12 @@ public class RoteiroService {
         }
     }
 
-    @SuppressWarnings("null")
+    //@SuppressWarnings("null")
     private List<RoteiroEvento> montarEventosRoteirosAux(UpdateRoteiro updateRoteiro) {
-        List<RoteiroEvento> eventosRoteiro = null;
+        List<RoteiroEvento> eventosRoteiro = new ArrayList<>();
 
         for (int i = 0; i < updateRoteiro.getEventosRoteiro().size(); i++) {
-            RoteiroEvento roteiroEventoAux = null;
+            RoteiroEvento roteiroEventoAux = new RoteiroEvento();
 
             roteiroEventoAux.setRoteiroEventoId(updateRoteiro.getEventosRoteiro().get(i).getRoteiroEventoId());
             roteiroEventoAux.setNomeEvento(updateRoteiro.getEventosRoteiro().get(i).getNomeEvento());

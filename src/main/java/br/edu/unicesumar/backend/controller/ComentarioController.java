@@ -25,19 +25,19 @@ public class ComentarioController {
     @Autowired
     private ComentarioService comentarioService;
 
-    @GetMapping("/atividade_comentarios/{idAtividade}")
-    public ResponseEntity<List<Comentario>> getComentariosDaAtividade(@PathVariable(name = "idAtividade") Long id) {
-        return ResponseEntity.ok(comentarioService.getComentariosAtividade(id));
+    @GetMapping("/atividade_comentarios/{atividadeId}")
+    public ResponseEntity<List<Comentario>> getComentariosDaAtividade(@PathVariable(name = "atividadeId") Long atividadeId) {
+        return ResponseEntity.ok(comentarioService.getComentariosAtividade(atividadeId));
     }
 
-    @GetMapping("/lugar_comentarios/{idLugar}")
-    public ResponseEntity<List<Comentario>> getComentariosDoLugar(@PathVariable(name = "idLugar") Long id) {
-        return ResponseEntity.ok(comentarioService.getComentariosLugar(id));
+    @GetMapping("/lugar_comentarios/{lugarId}")
+    public ResponseEntity<List<Comentario>> getComentariosDoLugar(@PathVariable(name = "lugarId") Long lugarId) {
+        return ResponseEntity.ok(comentarioService.getComentariosLugar(lugarId));
     }
 
-    @GetMapping("/roteiro_comentarios/{idRoteiro}")
-    public ResponseEntity<List<Comentario>> getComentariosDoRoteiro(@PathVariable(name = "idRoteiro") Long id) {
-        return ResponseEntity.ok(comentarioService.getComentariosRoteiro(id));
+    @GetMapping("/roteiro_comentarios/{roteiroId}")
+    public ResponseEntity<List<Comentario>> getComentariosDoRoteiro(@PathVariable(name = "roteiroId") Long roteiroId) {
+        return ResponseEntity.ok(comentarioService.getComentariosRoteiro(roteiroId));
     }
 
     @PostMapping("/VIAJANTE/atividade_adicionar_comentario")

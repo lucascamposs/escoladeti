@@ -1,7 +1,6 @@
 package br.edu.unicesumar.backend.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -67,5 +66,5 @@ public class Atividade {
 	private List<AtividadeFoto> atividadeFotos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "atividade", orphanRemoval = true)
-    private Collection<Comentario> comentariosAtividade;
+    private List<Comentario> comentariosAtividade;
 }

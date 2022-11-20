@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -59,13 +60,16 @@ public class Comentario {
 
     @ManyToOne
     @JoinColumn(name = "lugar_id")
+    @JsonIgnore
     private Lugar lugar;
 
     @ManyToOne
     @JoinColumn(name = "atividade_id")
+    @JsonIgnore
     private Atividade atividade;
 
     @ManyToOne
     @JoinColumn(name = "roteiro_id")
+    @JsonIgnore
     private Roteiro roteiro;
 }
